@@ -1,0 +1,14 @@
+services:
+  postgres:
+    image: postgres:14
+    container_name: actboard_db
+    environment:
+      POSTGRES_USER: ruwbine
+      POSTGRES_PASSWORD: actboard2
+      POSTGRES_DB: actboard_app
+    ports: 
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
