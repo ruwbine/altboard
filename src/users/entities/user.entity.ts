@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Exclude } from 'class-transformer';
 import { IUser } from '../interfaces/user.interface';
 
 @Entity({ name: 'user' })

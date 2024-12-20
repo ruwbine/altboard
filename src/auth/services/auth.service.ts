@@ -8,7 +8,7 @@ import { UserLoginDto } from '../dto/user-login.dto';
 import { UserCreateDto } from '../dto/user-create.dto';
 import { UsersService } from '../../users/users.service';
 import { TokenService } from './token.service';
-import { IResponse } from '../interfaces/response.interface';
+
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,7 @@ export class AuthService {
     private readonly tokenService: TokenService,
   ) {}
 
-  async login(userLoginDto: UserLoginDto): Promise<IResponse> {
+  async login(userLoginDto: UserLoginDto): Promise<any> {
     const { email, password } = userLoginDto;
     const user = await this.userService.findByEmail(email, true);
 
@@ -39,13 +39,10 @@ export class AuthService {
       userId: user.id,
       email: user.email,
     });
-    return {
-      success: true,
-      data: [{ accessToken: token }],
-    };
+    return { accessToken: token };
   }
 
-  async register(createUserDto: UserCreateDto): Promise<IResponse> {
+  async register(createUserDto: UserCreateDto): Promise<any> {
     const existingUser = await this.userService.isExistByEmail(
       createUserDto.email,
     );
@@ -62,15 +59,8 @@ export class AuthService {
       password: hashedPassword,
     });
     if (!createdUser) {
-      return {
-        success: false,
-        error: new Error('Something went wrong while registration'),
-      };
+      throw new Error('Something went wrong while registration');
     }
-    return {
-      success: !!createdUser,
-      data: [{ responseMessage: 'Registered successfully' }],
-      error: createdUser ? undefined : new Error('Registration failed'),
-    };
+    return { responseMessage: 'Registered successfully' };
   }
 }

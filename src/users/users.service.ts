@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
-import { TypeORMUserRepository } from './repository/typeorm.user.repository';
 import { IUser } from './interfaces/user.interface';
 import { UserCreateDto } from '../auth/dto/user-create.dto';
 import { UserMapper } from './mappers/user.mapper';
+import { UserRepository } from './repository/user.repository';
 
 @Injectable()
 export class UsersService implements OnModuleInit {
@@ -10,7 +10,7 @@ export class UsersService implements OnModuleInit {
     console.log('Users service implemented successfully');
   }
 
-  constructor(private readonly userRepository: TypeORMUserRepository) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async isExistByEmail(email: string): Promise<boolean> {
     const user = await this.userRepository.findOneByParams({ email });
