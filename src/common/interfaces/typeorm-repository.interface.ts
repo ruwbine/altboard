@@ -16,7 +16,9 @@ type findOptions<T> =
   | FindOneOptions<T>
   | FindOptionsWhereProperty<NonNullable<T[keyof T]>, NonNullable<T[keyof T]>>;
 
-export class TypeormRepository<T extends ObjectLiteral> implements IRepository<T>{
+export class TypeormRepository<T extends ObjectLiteral>
+  implements IRepository<T>
+{
   private ormRepository: Repository<T>;
 
   constructor(entity: EntityTarget<T>) {
@@ -55,9 +57,9 @@ export class TypeormRepository<T extends ObjectLiteral> implements IRepository<T
 
   async findOneByParams(params: Partial<T>): Promise<T | null> {
     console.log(params);
-    return this.ormRepository.findOne({where: params});
+    return this.ormRepository.findOne({ where: params });
   }
   async findByParams(params: Partial<T>): Promise<T[] | null> {
-    return this.ormRepository.find({where: params});
+    return this.ormRepository.find({ where: params });
   }
 }

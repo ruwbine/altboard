@@ -6,7 +6,6 @@ import { UserLoginDto } from '../dto/user-login.dto';
 import { IResponse } from '../interfaces/response.interface';
 import { ApiResponseInterceptor } from '../../common/api-response/interceptors/api-response.interceptor';
 
-@UseInterceptors(ApiResponseInterceptor) // Используем interceptor здесь
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}

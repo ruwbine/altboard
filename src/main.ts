@@ -12,7 +12,7 @@ async function bootstrap() {
     }),
   );
   app.enableCors();
-  await dataSource.initialize()
+  await dataSource.initialize();
   await app.listen(3000);
 }
 bootstrap();

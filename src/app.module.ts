@@ -6,6 +6,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { databaseConfig } from './ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ApiResponseInterceptor } from './common/api-response/interceptors/api-response.interceptor';
 
 @Module({
   imports: [
@@ -17,6 +18,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: 'APP_INTERCEPTOR',
+      useClass: ApiResponseInterceptor,
+    },
+  ],
 })
 export class AppModule {}
