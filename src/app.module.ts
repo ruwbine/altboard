@@ -7,6 +7,7 @@ import { UsersModule } from './users/users.module';
 import { databaseConfig } from './ormconfig';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ApiResponseInterceptor } from './common/api-response/interceptors/api-response.interceptor';
+import { UserStatsModule } from './user-stats/user-stats.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { ApiResponseInterceptor } from './common/api-response/interceptors/api-r
     TypeOrmModule.forRoot(databaseConfig),
     UsersModule,
     AuthModule,
+    UserStatsModule,
   ],
   controllers: [AppController],
   providers: [
