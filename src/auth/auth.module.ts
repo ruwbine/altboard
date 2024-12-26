@@ -1,13 +1,16 @@
-import { Module } from '@nestjs/common';
+import { Global, Module } from '@nestjs/common';
 import { AuthService } from './services/auth.service';
 import { AuthController } from './controllers/auth.controller';
 import { PasswordService } from './services/password.service';
 import { JwtModule } from '@nestjs/jwt';
 import { TokenService } from './services/token.service';
 import { UsersModule } from '../users/users.module';
-import { PassportModule } from '@nestjs/passport';
+import { AuthGuard, PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import 'dotenv/config';
+import { APP_GUARD } from '@nestjs/core';
+
+@Global()
 @Module({
   imports: [
     UsersModule,

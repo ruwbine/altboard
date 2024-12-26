@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 import { IUser } from '../interfaces/user.interface';
 import { UserStatsEntity } from 'src/user-stats/entities/user-stats.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })
 export class UserEntity implements IUser {
@@ -23,6 +24,7 @@ export class UserEntity implements IUser {
   @Column({ unique: true })
   email: string;
 
+  @Exclude()
   @Column()
   password: string;
 
