@@ -9,7 +9,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 import { IUser } from '../interfaces/user.interface';
-import { UserStatsEntity } from 'src/user-stats/entities/user-stats.entity';
+import { UserStatsEntity } from 'src/modules/user-stats/entities/user-stats.entity';
 import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })

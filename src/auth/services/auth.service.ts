@@ -6,7 +6,7 @@ import {
 import { PasswordService } from './password.service';
 import { UserLoginDto } from '../dto/user-login.dto';
 import { UserCreateDto } from '../dto/user-create.dto';
-import { UsersService } from '../../users/users.service';
+import { UsersService } from '../../modules/users/users.service';
 import { TokenService } from './token.service';
 
 @Injectable()

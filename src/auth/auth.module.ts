@@ -4,7 +4,7 @@ import { AuthController } from './controllers/auth.controller';
 import { PasswordService } from './services/password.service';
 import { JwtModule } from '@nestjs/jwt';
 import { TokenService } from './services/token.service';
-import { UsersModule } from '../users/users.module';
+import { UsersModule } from '../modules/users/users.module';
 import { AuthGuard, PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.strategy';
 import 'dotenv/config';

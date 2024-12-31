@@ -1,4 +1,4 @@
-import { IUser } from 'src/users/interfaces/user.interface';
+import { IUser } from 'src/modules/users/interfaces/user.interface';
 
 export interface IUsersStats {
   id: string;
