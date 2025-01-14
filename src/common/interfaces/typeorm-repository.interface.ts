@@ -1,20 +1,14 @@
+import { NotFoundException } from '@nestjs/common';
 import {
-  Repository,
-  EntityTarget,
-  ObjectLiteral,
-  FindOptionsWhere,
-  FindOneOptions,
-  FindOptionsWhereProperty,
   DeepPartial,
+  EntityTarget,
+  FindOptionsWhere,
+  ObjectLiteral,
+  Repository,
 } from 'typeorm';
+
 import { dataSource } from '../../ormconfig';
 import { IRepository } from './repository.interface';
-import { NotFoundException } from '@nestjs/common';
-
-type findOptions<T> =
-  | FindOptionsWhere<T>
-  | FindOneOptions<T>
-  | FindOptionsWhereProperty<NonNullable<T[keyof T]>, NonNullable<T[keyof T]>>;
 
 export class TypeormRepository<T extends ObjectLiteral>
   implements IRepository<T>
