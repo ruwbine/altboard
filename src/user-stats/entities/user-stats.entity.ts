@@ -1,6 +1,14 @@
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { IUsersStats } from '../interfaces/user-stats.interface';
 import { UserEntity } from 'src/users/entities/user.entity';
+import { SafeUserEntity } from 'src/users/mappers/user.mapper';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+  RelationId,
+} from 'typeorm';
+
+import { IUsersStats } from '../interfaces/user-stats.interface';
 
 @Entity('user_stats')
 export class UserStatsEntity implements IUsersStats {
@@ -21,4 +29,7 @@ export class UserStatsEntity implements IUsersStats {
 
   @OneToOne(() => UserEntity, (user) => user.stats)
   user: UserEntity;
+
+  @RelationId((userStats: UserStatsEntity) => userStats.user)
+  userId: string;
 }

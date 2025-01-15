@@ -1,20 +1,14 @@
+import { NotFoundException } from '@nestjs/common';
 import {
-  Repository,
-  EntityTarget,
-  ObjectLiteral,
-  FindOptionsWhere,
-  FindOneOptions,
-  FindOptionsWhereProperty,
   DeepPartial,
+  EntityTarget,
+  FindOptionsWhere,
+  ObjectLiteral,
+  Repository,
 } from 'typeorm';
+
 import { dataSource } from '../../ormconfig';
 import { IRepository } from './repository.interface';
-import { NotFoundException } from '@nestjs/common';
-
-type findOptions<T> =
-  | FindOptionsWhere<T>
-  | FindOneOptions<T>
-  | FindOptionsWhereProperty<NonNullable<T[keyof T]>, NonNullable<T[keyof T]>>;
 
 export class TypeormRepository<T extends ObjectLiteral>
   implements IRepository<T>
@@ -41,8 +35,10 @@ export class TypeormRepository<T extends ObjectLiteral>
     return this.ormRepository.save(newEntity);
   }
 
-  async update(id: string, entity: Partial<T>): Promise<void> {
-    await this.ormRepository.update(id, entity);
+  async update(id: string, entity: Partial<T>): Promise<T> {
+    const result = await this.ormRepository.update(id, entity);
+
+    return result.raw;
   }
 
   async remove(id: string): Promise<void> {
@@ -56,7 +52,6 @@ export class TypeormRepository<T extends ObjectLiteral>
   }
 
   async findOneByParams(params: Partial<T>): Promise<T | null> {
-    console.log(params);
     return this.ormRepository.findOne({ where: params });
   }
   async findByParams(params: Partial<T>): Promise<T[] | null> {
