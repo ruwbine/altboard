@@ -50,7 +50,6 @@ export class TypeormRepository<T extends ObjectLiteral>
   }
 
   async findOneByParams(params: Partial<T>): Promise<T | null> {
-    console.log(params);
     return this.ormRepository.findOne({ where: params });
   }
   async findByParams(params: Partial<T>): Promise<T[] | null> {
