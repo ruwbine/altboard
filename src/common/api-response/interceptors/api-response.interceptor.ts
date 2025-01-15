@@ -3,6 +3,7 @@ import {
   ExecutionContext,
   HttpException,
   Injectable,
+  Logger,
   NestInterceptor,
 } from '@nestjs/common';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
@@ -14,6 +15,7 @@ import { ApiResponse } from '../interfaces/api-response.interface';
 export class ApiResponseInterceptor<T>
   implements NestInterceptor<T, ApiResponse<T>>
 {
+  private readonly _logger = new Logger(ApiResponseInterceptor.name);
   intercept(
     context: ExecutionContext,
     next: CallHandler,
@@ -22,6 +24,7 @@ export class ApiResponseInterceptor<T>
       map((data) => successResponse(Array.isArray(data) ? data : [data])),
 
       catchError((error) => {
+        this._logger.error(error);
         let [status, code, detail] = [
           500,
           'INTERNAL_SERVER_ERROR',
