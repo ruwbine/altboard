@@ -35,8 +35,10 @@ export class TypeormRepository<T extends ObjectLiteral>
     return this.ormRepository.save(newEntity);
   }
 
-  async update(id: string, entity: Partial<T>): Promise<void> {
-    await this.ormRepository.update(id, entity);
+  async update(id: string, entity: Partial<T>): Promise<T> {
+    const result = await this.ormRepository.update(id, entity);
+
+    return result.raw;
   }
 
   async remove(id: string): Promise<void> {

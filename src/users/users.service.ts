@@ -40,9 +40,10 @@ export class UsersService implements OnModuleInit {
     return UserMapper.toIUserPublic(user);
   }
 
-  async updateUser(id: string, dto) {
+  async updateUser(id: string, dto: Partial<IUser>) {
     const user = await this.userRepository.findOne(id);
     Object.assign(user, dto);
-    await this.userRepository.update(id, user);
+    const updatedUser = await this.userRepository.update(id, user);
+    return updatedUser;
   }
 }

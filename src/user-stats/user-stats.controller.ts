@@ -19,5 +19,7 @@ export class UserStatsController {
   async updateStats(@User() user: IUser) {}
 
   @Get('all')
-  async getAllUsersStats() {}
+  async getAllUsersStats() {
+    return this._userStatsService.getAllStats();
+  }
 }
