@@ -30,10 +30,7 @@ export class UserStatsService {
 
   private async _createEmptyStats(user: IUser): Promise<IUsersStats> {
     const stats = new UserStatsEntity();
-    const userWithStats: IUser = await this._usersService.updateUser(user.id, {
-      ...user,
-      stats,
-    });
-    return await userWithStats.stats;
+    stats.userId = user.id;
+    return await this._statsRepo.create(stats);
   }
 }

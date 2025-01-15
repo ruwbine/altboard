@@ -30,6 +30,6 @@ export class UserStatsEntity implements IUsersStats {
   @OneToOne(() => UserEntity, (user) => user.stats)
   user: UserEntity;
 
-  @RelationId((userStats: UserStatsEntity) => userStats.user)
+  @Column({ nullable: true })
   userId: string;
 }
