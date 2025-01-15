@@ -8,10 +8,7 @@ import { UserStatsRepository } from './repository/user-stats.repository';
 
 @Injectable()
 export class UserStatsService {
-  constructor(
-    private readonly _statsRepo: UserStatsRepository,
-    private readonly _usersService: UsersService,
-  ) {}
+  constructor(private readonly _statsRepo: UserStatsRepository) {}
 
   async getStats(user: IUser) {
     const stats = await this._statsRepo.findOneByParams({

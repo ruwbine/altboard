@@ -40,6 +40,11 @@ export class UsersService implements OnModuleInit {
     return UserMapper.toIUserPublic(user);
   }
 
+  async findAllUsers(): Promise<IUser[]> {
+    const users = await this.userRepository.findAll();
+    return users.map(UserMapper.toIUserPublic);
+  }
+
   async updateUser(id: string, dto: Partial<IUser>) {
     const user = await this.userRepository.findOne(id);
     Object.assign(user, dto);

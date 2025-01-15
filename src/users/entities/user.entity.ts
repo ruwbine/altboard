@@ -1,3 +1,5 @@
+import { Exclude } from 'class-transformer';
+import { UserStatsEntity } from 'src/user-stats/entities/user-stats.entity';
 import {
   Column,
   CreateDateColumn,
@@ -8,9 +10,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+
 import { IUser } from '../interfaces/user.interface';
-import { UserStatsEntity } from 'src/user-stats/entities/user-stats.entity';
-import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'user' })
 export class UserEntity implements IUser {
@@ -33,6 +34,7 @@ export class UserEntity implements IUser {
 
   @OneToOne(() => UserStatsEntity, (userStats) => userStats.user, {
     cascade: true,
+    eager: true,
   })
   @JoinColumn()
   stats: UserStatsEntity;

@@ -7,7 +7,8 @@ export type SafeUserEntity = Omit<IUser, 'password'>;
 
 export class UserMapper {
   static toIUserPublic(userEntity: UserEntity | IUser): IUser {
-    const safeUser: SafeUserEntity = { ...userEntity };
+    console.log(userEntity);
+    const safeUser: SafeUserEntity = userEntity;
 
     return safeUser;
   }
