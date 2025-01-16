@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
+import { UserCreateDto } from 'src/auth/dto/user-create.dto';
 
-import { UserCreateDto } from '../auth/dto/user-create.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { IUser } from './interfaces/user.interface';
 import { UserMapper } from './mappers/user.mapper';

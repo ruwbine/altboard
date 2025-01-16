@@ -1,5 +1,5 @@
 import { Exclude } from 'class-transformer';
-import { UserStatsEntity } from 'src/user-stats/entities/user-stats.entity';
+import { UserStatsEntity } from 'src/modules/user-statistics/user-stats/entities/user-stats.entity';
 import {
   Column,
   CreateDateColumn,

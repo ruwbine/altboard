@@ -1,4 +1,4 @@
-import { UserEntity } from 'src/users/entities/user.entity';
+import { UserEntity } from 'src/modules/users/entities/user.entity';
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { IUsersStats } from '../interfaces/user-stats.interface';

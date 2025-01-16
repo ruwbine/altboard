@@ -1,5 +1,5 @@
 import { IsOptional } from 'class-validator';
-import { IUsersStats } from 'src/user-stats/interfaces/user-stats.interface';
+import { IUsersStats } from 'src/modules/user-statistics/user-stats/interfaces/user-stats.interface';
 
 export class UpdateUserDto {
   @IsOptional()

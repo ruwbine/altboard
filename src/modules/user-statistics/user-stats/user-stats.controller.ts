@@ -1,7 +1,7 @@
 import { Controller, Get, Patch, UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { User } from 'src/users/decorators/user.decorator';
-import { IUser } from 'src/users/interfaces/user.interface';
+import { User } from 'src/modules/users/decorators/user.decorator';
+import { IUser } from 'src/modules/users/interfaces/user.interface';
 
 import { UserStatsService } from './services/user-stats.service';
 
@@ -12,7 +12,7 @@ export class UserStatsController {
 
   @Get()
   async getStats(@User() user: IUser) {
-    return this.userStatsService.getStats(user);
+    return this.userStatsService.getStats(user.id);
   }
 
   @Patch()

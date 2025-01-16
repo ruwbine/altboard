@@ -1,4 +1,4 @@
-import { IUsersStats } from 'src/user-stats/interfaces/user-stats.interface';
+import { IUsersStats } from 'src/modules/user-statistics/user-stats/interfaces/user-stats.interface';
 
 export interface IUser {
   id: string;
