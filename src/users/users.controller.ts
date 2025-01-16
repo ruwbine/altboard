@@ -5,10 +5,10 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly _usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) {}
 
   @Get()
   async getAllUsers(): Promise<IUser[]> {
-    return await this._usersService.findAllUsers();
+    return await this.usersService.findAllUsers();
   }
 }

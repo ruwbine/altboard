@@ -6,11 +6,8 @@ import { IUser } from '../interfaces/user.interface';
 export type SafeUserEntity = Omit<IUser, 'password'>;
 
 export class UserMapper {
-  static toIUserPublic(userEntity: UserEntity | IUser): IUser {
-    console.log(userEntity);
-    const safeUser: SafeUserEntity = userEntity;
-
-    return safeUser;
+  static toIUserPublic({ password, ...safeUser }: UserEntity | IUser): IUser {
+    return safeUser as SafeUserEntity;
   }
 
   static toIUserInternal(userEntity: UserEntity): IUser {

@@ -7,7 +7,7 @@ export interface IUser {
   email: string;
   isEmailConfirmed?: boolean;
   lastLogin?: Date;
-  stats: IUsersStats;
+  stats?: IUsersStats;
   createdAt: Date;
   updatedAt: Date;
 }

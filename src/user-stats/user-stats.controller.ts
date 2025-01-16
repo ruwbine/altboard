@@ -3,16 +3,16 @@ import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { User } from 'src/users/decorators/user.decorator';
 import { IUser } from 'src/users/interfaces/user.interface';
 
-import { UserStatsService } from './user-stats.service';
+import { UserStatsService } from './services/user-stats.service';
 
 @Controller('stats')
 @UseGuards(JwtAuthGuard)
 export class UserStatsController {
-  constructor(private readonly _userStatsService: UserStatsService) {}
+  constructor(private readonly userStatsService: UserStatsService) {}
 
   @Get()
   async getStats(@User() user: IUser) {
-    return this._userStatsService.getStats(user);
+    return this.userStatsService.getStats(user);
   }
 
   @Patch()
@@ -20,6 +20,6 @@ export class UserStatsController {
 
   @Get('all')
   async getAllUsersStats() {
-    return this._userStatsService.getAllStats();
+    return this.userStatsService.getAllStats();
   }
 }

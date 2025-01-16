@@ -7,12 +7,12 @@ export class UserRepository
   extends TypeormRepository<UserEntity>
   implements OnModuleInit
 {
-  private _logger = new Logger();
+  private logger = new Logger();
   constructor() {
     super(UserEntity);
   }
 
   onModuleInit() {
-    this._logger.log('Users repository successfully initialized');
+    this.logger.log('Users repository successfully initialized');
   }
 }

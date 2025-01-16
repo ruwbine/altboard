@@ -7,12 +7,12 @@ export class UserStatsRepository
   extends TypeormRepository<UserStatsEntity>
   implements OnModuleInit
 {
-  private _logger = new Logger();
+  private logger = new Logger();
 
   constructor() {
     super(UserStatsEntity);
   }
   async onModuleInit() {
-    this._logger.log('UserStats repository successfully started');
+    this.logger.log('UserStats repository successfully started');
   }
 }

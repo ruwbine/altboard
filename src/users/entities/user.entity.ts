@@ -35,6 +35,7 @@ export class UserEntity implements IUser {
   @OneToOne(() => UserStatsEntity, (userStats) => userStats.user, {
     cascade: true,
     eager: true,
+    onDelete: 'SET NULL',
   })
   @JoinColumn()
   stats: UserStatsEntity;

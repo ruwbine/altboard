@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 
 import { UserCreateDto } from '../auth/dto/user-create.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 import { IUser } from './interfaces/user.interface';
 import { UserMapper } from './mappers/user.mapper';
 import { UserRepository } from './repository/user.repository';
@@ -45,7 +46,7 @@ export class UsersService implements OnModuleInit {
     return users.map(UserMapper.toIUserPublic);
   }
 
-  async updateUser(id: string, dto: Partial<IUser>) {
+  async updateUser(id: string, dto: UpdateUserDto) {
     const user = await this.userRepository.findOne(id);
     Object.assign(user, dto);
     const updatedUser = await this.userRepository.update(id, user);

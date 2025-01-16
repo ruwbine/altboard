@@ -1,12 +1,5 @@
 import { UserEntity } from 'src/users/entities/user.entity';
-import { SafeUserEntity } from 'src/users/mappers/user.mapper';
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-  RelationId,
-} from 'typeorm';
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 import { IUsersStats } from '../interfaces/user-stats.interface';
 
