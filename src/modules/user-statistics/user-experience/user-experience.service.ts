@@ -8,7 +8,7 @@ export class UserExperienceService {
   constructor(private usersStatsService: UserStatsService) {}
   async addExp(userId: string, amount: number) {
     const stats = await this.usersStatsService.getStats(userId);
-    const updatedStats = await this.updateExpAndLevel(
+    const updatedStats = this.updateExpAndLevel(
       stats,
       amount,
       this.calculateMaxExp(stats.level),
@@ -29,12 +29,12 @@ export class UserExperienceService {
       newStats.exp -= maxExp;
     }
 
-    return newStats; // Возвращаем новый объект
+    return newStats;
   }
 
   private calculateMaxExp(level: number): number {
-    const BASE_EXP = 100; // Начальное значение опыта
-    const EXP_GROWTH_FACTOR = 1.011; // Фактор роста опыта
+    const BASE_EXP = 100;
+    const EXP_GROWTH_FACTOR = 1.011;
     const LEVEL_DIVIDER = 2;
 
     return Math.round(

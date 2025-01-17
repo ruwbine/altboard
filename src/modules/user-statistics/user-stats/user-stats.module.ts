@@ -11,5 +11,6 @@ import { UserStatsController } from './user-stats.controller';
   imports: [TypeOrmModule.forFeature([UserStatsEntity]), UsersModule],
   controllers: [UserStatsController],
   providers: [UserStatsService, UserStatsRepository],
+  exports: [UserStatsService],
 })
 export class UserStatsModule {}
