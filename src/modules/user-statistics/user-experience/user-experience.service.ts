@@ -8,27 +8,23 @@ export class UserExperienceService {
   constructor(private usersStatsService: UserStatsService) {}
   async addExp(userId: string, amount: number) {
     const stats = await this.usersStatsService.getStats(userId);
-    const updatedStats = this.updateExpAndLevel(
-      stats,
-      amount,
-      this.calculateMaxExp(stats.level),
-    );
+    const updatedStats = this.updateExpAndLevel(stats, amount);
 
     return await this.usersStatsService.updateStats(userId, updatedStats);
   }
 
-  private updateExpAndLevel(
-    stats: IUsersStats,
-    amount: number,
-    maxExp: number,
-  ): IUsersStats {
+  private updateExpAndLevel(stats: IUsersStats, amount: number): IUsersStats {
     const newStats = { ...stats, exp: stats.exp + amount }; // Создаём копию объекта
 
-    if (newStats.exp >= maxExp) {
-      newStats.level++;
-      newStats.exp -= maxExp;
+    let levelsGained = 0;
+    while (
+      newStats.exp >= this.calculateMaxExp(newStats.level + levelsGained)
+    ) {
+      newStats.exp -= this.calculateMaxExp(newStats.level + levelsGained);
+      levelsGained++;
     }
 
+    newStats.level += levelsGained;
     return newStats;
   }
 
