@@ -29,8 +29,8 @@ export class UserExperienceService {
   }
 
   private calculateMaxExp(level: number): number {
-    const BASE_EXP = 100;
-    const EXP_GROWTH_FACTOR = 1.011;
+    const BASE_EXP = 500;
+    const EXP_GROWTH_FACTOR = 1.01;
     const LEVEL_DIVIDER = 2;
 
     return Math.round(
