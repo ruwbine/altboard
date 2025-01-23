@@ -3,10 +3,11 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { PasswordService } from './password.service';
-import { UserLoginDto } from '../dto/user-login.dto';
+import { UsersService } from 'src/modules/users/users.service';
+
 import { UserCreateDto } from '../dto/user-create.dto';
-import { UsersService } from '../../users/users.service';
+import { UserLoginDto } from '../dto/user-login.dto';
+import { PasswordService } from './password.service';
 import { TokenService } from './token.service';
 
 @Injectable()

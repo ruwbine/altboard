@@ -4,9 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { AuthModule } from './auth/auth.module';
 import { ApiResponseInterceptor } from './common/api-response/interceptors/api-response.interceptor';
+import { UserStatisticsModule } from './modules/user-statistics/user-statistics.module';
+import { UsersModule } from './modules/users/users.module';
 import { databaseConfig } from './ormconfig';
-import { UserStatsModule } from './user-stats/user-stats.module';
-import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -16,7 +16,7 @@ import { UsersModule } from './users/users.module';
     TypeOrmModule.forRoot(databaseConfig),
     UsersModule,
     AuthModule,
-    UserStatsModule,
+    UserStatisticsModule,
   ],
   providers: [
     {
